@@ -2,21 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class moeda : MonoBehaviour
+public class Moeda : MonoBehaviour
 {
-    
     public int velocidadeGiro = 50;
-    // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider Other)
     {
-        if (other.tag == "Player")
+        if (Other.tag == "Player")
         {
+            FindObjectOfType<GameManager>().SubtraiMoedas(1);
+           
             Destroy(gameObject);
         }
     }
@@ -24,6 +25,6 @@ public class moeda : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * velocidadeGiro * Time.deltaTime,Space.World);
+        transform.Rotate(Vector3.up * velocidadeGiro * Time.deltaTime, Space.World);
     }
 }
